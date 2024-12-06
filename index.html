@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="GeoEval: Benchmark for Evaluating LLMs and Multi-Modal Models on Geometry Problem-Solving">
+  <meta name="keywords" content="LLMs, GeoEval">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GeoEval: Benchmark for Evaluating LLMs and Multi-Modal Models on Geometry Problem-Solving</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <!-- <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+/Users/panlu/Library/Mobile Documents/com~apple~CloudDocs/ImageMath/visual-mathqa-server/data_final/images
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link rel="icon" href="./static/images/ucas_logo_circle.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
+
+  <!-- <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bulma.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script> -->
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/explorer-index.js"></script>
+  <script src="./static/js/question_card.js"></script>
+
+  <script src="./static/js/leaderboard_testmini.js"></script>  
+  <script src="./data/results/output_folders.js" defer></script>
+  <script src="./data/results/model_scores.js" defer></script>
+
+  <script src="./visualizer/data/data_public.js" defer></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://arxiv.org/pdf/2402.10104v2">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a> 
+      <!-- @PAN TODO: consider adding links? -->
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://mathvista.github.io/">
+            <b>MathVista</b>
+          </a>
+          <a class="navbar-item" href="https://eternal8080.github.io/LANS.github.io/">
+            <b>LANS</b>
+          </a>
+          <a class="navbar-item" href="https://eternal8080.github.io/PGPSNet.github.io/">
+            <b>PGPSNet</b>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">GeoEval: Benchmark for Evaluating LLMs and Multi-Modal Models on Geometry Problem-Solving</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://knightzhang625.github.io/">Jiaxin Zhang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://zzli2022.github.io/">Zhongzhi Li</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://mingliangzhang2018.github.io/">Mingliang Zhang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://nlpr.ia.ac.cn/pal/People/YinFei.html">Fei Yin</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://nlpr.ia.ac.cn/liucl/">Chenglin Liu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.strath.ac.uk/staff/moshfeghiyashardr/">Yashar Moshfeghi</a><sup>2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Chinese Academy of Sciences,</span>
+            <span class="author-block"><sup>2</sup>University of Strathclyde</span>
+            <br>
+            <span class="paper-block"><b style="color:#f41c1c">ACL 2024</b> </span>
+
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2402.10104"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2402.10104"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://github.com/GeoEval/GeoEval"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>code</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/GeoEval/GeoEval"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>dataset</span>
+                  </a>
+              </span>
+              
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+ <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <img src="static/images/lidia.jpg" alt="geometric reasoning" width="99%"/>
+      <p> The performance of models across various subjects, revealing distinct strengths. The WizardMath-7B model significantly outperforms others in flat geometry problems, such as length
+        and lines. Conversely, in solid geometry problems like cuboids and spheres, GPT-4V surpasses WizardMath-7B, indicating its superior capability in addressing solid geometry questions.
+      </p>
+    </div>
+  </div>
+</section> 
+
+
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            This project comprises a  <b>LLM evaluation</b> of <b>Geometry Problem Solving</b> methods and the construction of comprehensive datasets. The aim is to advance the field of solving geometry problems. The project is focused on the construction of datasets in the field of geometry problem solving and to provide a comprehensive evaluation of current large language models.
+          </p>
+          <p>
+            The <b>GeoEval</b> benchmark is specifically designed for assessing the ability of models in resolving geometric math problems. This benchmark features five characteristics: Comprehensive Variety, Varied Problems, Dual Inputs, Diverse Challenges, and Complexity Ratings.
+          </p>
+          <p>
+            For an insightful contrast, we offer a comparative analysis of <b>GeoEval</b> against earlier datasets.
+          </p>
+          <p>
+            For an insightful contrast, we offer a comparative analysis of <b>GeoEval</b> against earlier datasets. <b>GeoEval</b> Benchmark Features Comprehensive Variety: The benchmark covers a wide range of geometric topics, providing a comprehensive test for models.
+          </p>
+          <ul class="custom-list">
+            <li><b>Varied Problems:</b> Problems in the benchmark are varied, testing the model's ability to handle different types of geometric problems.</li>
+            <li><b>Dual Inputs:</b> The benchmark includes both text and diagram inputs, testing the model's ability to process and integrate information from different sources.</li>
+            <li><b>Diverse Challenges:</b> The benchmark poses diverse challenges, testing the model's ability to handle complex and varied geometric problems.</li>
+            <li><b>Complexity Ratings:</b> The benchmark includes problems of different complexity levels, allowing for a nuanced assessment of the model's capabilities.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</div>
+</section>
+
+<section class="section">
+  <div class="container">
+    
+    <div class="columns is-centered">
+      <div class="column is-full has-text-centered content">
+
+      
+
+        <h2 class="title is-3" id="leaderboard_test">Leaderboard on GeoEval</h2>
+        <div class="content">
+          <p class="mt-3">Accuracy scores of models on our <b>GeoEval</b> benchmark</p>
+
+          <table class="js-sort-table" id="results">
+            <tr>
+              <th class="js-sort-number">Model</th>
+              <th class="js-sort-number">GeoEval-2000 (A/T %)</th>
+              <th class="js-sort-number">GeoEval-backward (A %)</th>
+              <th class="js-sort-number">GeoEval-aug (A %)</th>
+              <th class="js-sort-number">GeoEval-hard (A %)</th>
+            </tr>
+            <tr>
+              <td>CodeGen2-16B ◇</td>
+              <td>28.76 / 22.06</td>
+              <td>5.10</td>
+              <td>8.50</td>
+              <td>5.66</td>
+            </tr>
+            <tr>
+              <td>GPT-3.5 ◇</td>
+              <td>24.71 / 21.27</td>
+              <td>22.66</td>
+              <td>41.25</td>
+              <td>22.33</td>
+            </tr>
+            <tr>
+              <td>GPT-4 ◇</td>
+              <td>27.95 / 43.86</td>
+              <td>26.00</td>
+              <td>45.75</td>
+              <td>10.10</td>
+            </tr>
+            <tr>
+              <td>WizardMath-70B ◇</td>
+              <td><b class="best-score-text">55.67 / 34.20</b></td>
+              <td>28.66</td>
+              <td>37.75</td>
+              <td>6.00</td>
+            </tr>
+            <tr>
+              <td>WizardMath-7B-V1.1 ◇</td>
+              <td>54.78 / 32.76</td>
+              <td>32.66</td>
+              <td><b class="best-score-text">47.75</b></td>
+              <td>6.00</td>
+            </tr>
+            <tr>
+              <td>Llava-7B-V1.5</td>
+              <td>12.80 / 21.01</td>
+              <td>11.33</td>
+              <td>20.25</td>
+              <td>20.30</td>
+            </tr>
+            <tr>
+              <td>Qwen-VL</td>
+              <td>25.60 / 25.97</td>
+              <td>5.66</td>
+              <td>22.25</td>
+              <td>21.66</td>
+            </tr>
+            <tr>
+              <td>mPLUG-Owl2</td>
+              <td>37.76 / n/a</td>
+              <td><b class="best-score-text">35.33</b></td>
+              <td>38.00</td>
+              <td>22.66</td>
+            </tr>
+            <tr>
+              <td>InstructBLIP †</td>
+              <td>52.18 / n/a</td>
+              <td>15.66</td>
+              <td>35.00</td>
+              <td><b class="best-score-text">70.30</b></td>
+            </tr>
+            <tr>
+              <td>GPT-4V</td>
+              <td>37.22 / 43.86 ‡</td>
+              <td>26.00</td>
+              <td>45.75</td>
+              <td>10.10</td>
+            </tr>                                               
+        </table>
+
+          <b>◇:</b> All LLMs,  <b>A:</b> the overall accuracy across all problems
+          <br>
+          <b>T:</b>  accuracy for problems containing only texts without diagrams,
+          <b>n/a:</b> scores are unavailable due to models cannot process text-only inputs
+          <br>
+          <b>†:</b> doubt on the high accuracy rates reported by the IntructBLIP model,
+          <b>‡:</b>  accuracy figures for GPT-4V are derived from GPT-4
+          <br>
+          <div>
+          <p>🚨 For more details, please refer to <a href="https://github.com/GeoEval/GeoEval">this link</a> 
+          </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DATASET SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <!-- <h1 class="title is-1 mathvista"><img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>MathVista Dataset</h1> -->
+  <h1 class="title is-1 mathvista">
+    <!--<img src="static/images/mathvista.png" style="width:1em;vertical-align: middle" alt="Logo"/>-->
+    <span class="mathvista" style="vertical-align: middle">GeoEval Dataset</span>
+  </h1>
+  </div>
+</section>
+
+<!-- <section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p> -->
+            
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-full-width has-text-centered"> -->
+        <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            The <span class="mathvista">GeoEval</span> benchmark is structured into four subsets: <b>GeoEval-2000</b>, comprising 2,000 problems; <b>GeoEval-backward</b>, with 750 problems; <b>GeoEvalaug</b>, containing 2,000 problems; and <b>GeoEval-hard</b>, including 300 problems.
+            <br><br>
+            A total of 24,912 problems were collected from Geometry3K, PGPS9K, UniGeo, GeoQA+, GeometryQA, and geometry problems from the MATH and MathQA datasets. From these, 2,000 geometry math problems were selected to create the <b>GeoEval-2000</b> subset.
+            <br><br>
+            <b>GeoEval-backward</b> problems start with the answers from forward problems, posing queries to find hidden numbers. From the GeoEval-2000 subset, 750 problems were selected and backward questions were created.
+            <br><br>
+            To evaluate model resilience and prevent data leakage during pre-training, a context learning strategy rephrases problems from the GeoEval-2000 subset to make <b>GeoEvalaug</b>. Each problem is rephrased into five variants by GPT-3.5.
+            <br><br>
+            The <b>GeoEval-hard</b> subset includes 300 solid and analytic geometry problems. These were selected from an initial pool of approximately 10,000 problems through web scraping, followed by a refined manual review process.
+            <!-- a compilation of data 1) carefully examined and filtered from 28 existing VQA and MathQA datasets and 2) manually collected by us. In total, 6,141 examples were collected from 31 different datasets. -->
+          </p>
+
+          <div id="results-carousel" class="carousel results-carousel">
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static/images/distributions.jpg" alt="distribution" width="80%"/>
+                <p> Visualization of the proportional contributions and varied distribution of geometric shapes of these source datasets to the GeoEval-2000 subset, showcasing the variety and scope of the geometry problems collected from each source.</p>
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static/images/Comparison.png" alt="comparison" width="100%"/>
+                <p>Comparison between <span class="mathvista">GeoEval</span> benchmark and other datasets
+                  <br>
+                  <span class="mathvista">GeoEval</span> includes problems from seven public datasets and three newly created ones
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="content has-text-centered">
+            <img src="static/images/source_dataset.png" alt="geometric reasoning" width="60%"/>
+            <p> Summary of the 31 different source datasets in <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+              <span class="mathvista">MathVista</span>.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img src="static/images/our_new_3_datasets.png" alt="geometric reasoning" width="70%"/>
+            <p> Examples of our newly annotated datasets: IQTest, FunctionQA, and PaperQA.</p>
+          </div> -->
+
+
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Examples</h2>
+        <p>Examples from different perspectives in
+          <span class="mathvista">GeoEval</span></p>
+
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/examples/example.png" alt="example" width="50%"/>
+              <p> Unique examples of our GeoEval benchmark</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/examples/flat.png" alt="example" width="60%"/>
+              <p>Examples of the flat geometry problem, the analytic geometry problem, and the solid geometry problem</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/examples/four.png" alt="example" width="60%"/>
+              <p>Examples of GeoEval-2000, GeoEval-backward, GeoEval-aug, GeoEval-hard subsets</p>
+            </div>
+          </div>
+         
+
+          
+        </div>
+
+        <br><br>
+      
+      </div>
+    </div>
+    <!-- <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Statistics</h2>
+        <p>Notable statistics of <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+          <span class="mathvista">MathVista</span></p>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/statistics/context-dist.png" alt="context" class="stats-image">
+              <p>Distribution of visual context types within <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+                <span class="mathvista">MathVista</span></p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/statistics/category.png" alt="category" class="stats-image"/>
+              <p>Category distribution of problems within <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+                <span class="mathvista">MathVista</span></p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/statistics/grade-levels.png" alt="grade" class="stats-image"/>
+              <p>Distribution of questions across different grade levels within <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+                <span class="mathvista">MathVista</span></p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/statistics/qs-len.png" alt="qs-len" class="stats-image"/>
+              <p>Distribution of the number of words per question in <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+                <span class="mathvista">MathVista</span>. 
+                Questions with a length greater than 60 are categorized as 61 for visualization simplicity 
+              </p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/statistics/reasoning.png" alt="reasoning" class="stats-image"/>
+              <p>Portion of each mathematical reasoning type involved in the problems of <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+                <span class="mathvista">MathVista</span></p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/statistics/reasoning-count.png" alt="reasoning-count" class="stats-image"/>
+              <p>Distribution of the number of mathematical reasoning types within <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+                <span class="mathvista">MathVista</span></p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/statistics/task-type.png" alt="task-type" class="stats-image"/>
+              <p>Task type distribution of problems within <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+                <span class="mathvista">MathVista</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered m-6">
+      <div class="column is-max-desktop has-text-centered">
+        <h2 class="title is-3" id="visualization">Visualization</h2>
+        <iframe src="visualizer/explore.html" style="width: 100%;min-height: 100vh; border-radius: 20px;"></iframe>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- RESULTS SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista">Experiment Results</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Results on Existing Foundation Models</h2>
+        <!-- <p>One example for each reasoning skill required in <span class="mathvista">MathVista</span></p> -->
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-figures/length.png" alt="result" width="80%"/>
+              <p>Models performances on GeoEval-2000 subset according to different question lengths</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-figures/difficult.png" alt="result" width="70%"/>
+              <p>Model performances on GeoEval-2000 subset according to different complexity levels</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-figures/external knowledge.png" alt="result" width="80%"/>
+              <p>Comparison of models requiring external knowledge ("w" in blue color) and those do not ("w/o" in orange color).</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  
+    <!-- <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Visualization Examples</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/5.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/6.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/37.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/38.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/39.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/40.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/41.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/42.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/43.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/44.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/45.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/46.png" alt="" width="50%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/47.png" alt="" width="60%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/48.png" alt="" width="40%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/49.png" alt="" width="40%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/50.png" alt="" width="40%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/51.png" alt="" width="40%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/52.png" alt="" width="40%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/53.png" alt="" width="40%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/54.png" alt="" width="40%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/55.png" alt="" width="55%"/>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/results-examples/56.png" alt="" width="50%"/>
+            </div>
+          </div>   
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container is-full has-text-centered content m-6" id="result-table">
+      <h2 class="title is-3" id="explorer">Explorer</h2>
+      <p>Explore the outputs of each model on <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+        <span class="mathvista">MathVista</span></p>
+      <div class="level has-text-centered" style="position: sticky; top: 0; z-index: 20;">
+        <div class="level-item box m-3" style="width: 30%; background: rgba(250, 250, 250, 1);">
+          <button class="button" style="width: 100%; border: none; background: rgba(250, 250, 250, 1);" id="refresh-qids">
+            <span class="icon is-large">
+              <i class="fa fa-redo fa-lg" aria-hidden="true"></i>
+            </span>
+            <p class="title is-4 m-0">Refresh Question</p>
+          </button>
+        </div>
+        <div class="level-item box m-3" style="width: 30%; background: rgba(250, 250, 250, 1);">
+          <div class="dropdown" style="width: 100%;">
+            <div class="dropdown-trigger has-text-justified" style="width: 100%; ">
+              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" style="width: 100%; border: none; background: rgba(250, 250, 250, 1);">
+                <p class="title m-0 is-4 dropdown-display">Multimodal Bard</p>
+                <span class="icon is-large" style="position: absolute; right:0;">
+                  <i class="fas fa-angle-down fa-lg" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu" style="width:100%;">
+              <div class="dropdown-content">
+                <!-- <a class="dropdown-item">
+                  Dropdown item
+                </a>
+                <a class="dropdown-item">
+                  Other dropdown item
+                </a> ->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="level-item box m-3" style="width: 30%; background: rgba(250, 250, 250, 1);">
+          <div class="dropdown" style="width: 100%;">
+            <div class="dropdown-trigger has-text-justified" style="width: 100%;">
+              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" style="width: 100%; border: none; background: rgba(250, 250, 250, 1);">
+                <p class="title m-0 is-4 dropdown-display">CoT GPT4 (Caption+OCR)</p>
+                <span class="icon is-large" style="position: absolute; right:0;">
+                  <i class="fas fa-angle-down fa-lg" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu" style="width:100%;">
+              <div class="dropdown-content">
+                <!-- <a class="dropdown-item">
+                  Dropdown item
+                </a>
+                <a class="dropdown-item">
+                  Other dropdown item
+                </a> ->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- @PAN TODO: bibtex -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">BibTeX</h2>
+    <pre><code>@article{zhang2024geoeval,
+      title={GeoEval: benchmark for evaluating LLMs and Multi-Modal Models on geometry problem-solving},
+      author={Zhang, Jiaxin and Li, Zhongzhi and Zhang, Mingliang and Yin, Fei and Liu, Chenglin and Moshfeghi, Yashar},
+      journal={arXiv preprint arXiv:2402.10104},
+      year={2024}
+    }</code></pre>
+  </div>
+</section>
+
+<section>
+  <div class="section" id="org-banners" style="display:flex">
+    <a href="https://www.ucas.edu.cn/" target="_blank" rel="external">
+        <img class="center-block org-banner" src="static/images/ucas_logo.png" style="width: 400px; height: 200px;">
+    </a>
+    <a href="https://www.strath.ac.uk/" target="blank" class="ext-link">
+        <img class="center-block org-banner" src="static/images/Strathclyde.png" style="width: 400px; height: 200px;">
+    </a>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <!-- <div class="container"> -->
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is website adapted from <a href="https://nerfies.github.io/">Nerfies</a>, licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</footer>
+
+</body>
+</html>
