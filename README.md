@@ -6,8 +6,7 @@ If you find GeoEval useful for your work please cite:
 ```
 @article{yang2024cc,
   title={CC-OCR: A Comprehensive and Challenging OCR Benchmark for Evaluating Large Multimodal Models in Literacy},
-  author={Yang, Zhibo and Tang, Jun and Li, Zhaohai and Wang, Pengfei and Wan, Jianqiang and Zhong, Humen and Liu, Xuejing and Yang, Mingkun and Wang, Peng and Liu, 
-          Yuliang and others},
+  author={Yang, Zhibo and Tang, Jun and Li, Zhaohai and Wang, Pengfei and Wan, Jianqiang and Zhong, Humen and Liu, Xuejing and Yang, Mingkun and Wang, Peng and Bai, Shuai and others},
   journal={arXiv preprint arXiv:2412.02210},
   year={2024}
 }
