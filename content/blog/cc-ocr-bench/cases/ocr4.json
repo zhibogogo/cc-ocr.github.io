@@ -1,9 +1,0 @@
-{
-    "title": "Example: Document Parsing",
-    "messages": [
-                {
-            "role": "Screen-shot document",
-            "content": "![image](https://img.alicdn.com/imgextra/i4/O1CN01OGYW861cRTfMVwBep_!!6000000003597-2-tps-1384-1230.png)"
-        }
-    ]
-}

@@ -40,7 +40,7 @@ show_word_count: true
 {{< button href="https://github.com/QwenLM/CodeQwen1.5" label="GITHUB" external=true >}}
 {{< button href="https://huggingface.co/Qwen" label="HUGGING FACE" external=true >}}
 {{< button href="https://modelscope.cn/organization/qwen" label="MODELSCOPE" external=true >}}
-{{< button href="https://huggingface.co/spaces/Qwen/Qwen1.5-72B-Chat" label="DEMO" external=true >}}
+{{< button href="https://huggingface.co/spaces/Qwen/CodeQwen1.5-7b-Chat-demo" label="DEMO" external=true >}}
 {{< button href="https://discord.gg/yPEP2vHTu4" label="DISCORD" external=true >}}
 
 # 简介
@@ -57,7 +57,7 @@ show_word_count: true
 
 # CodeQwen 是基础的 Coder
 
-代码生成是大语言模型的关键能力之一，期待模型将自然语言指令转换为具有精确的、可执行的代码。仅拥有 70 亿参数的 CodeQwen1.5 在基础代码生成能力上已经超过了更尺寸的模型，进一步缩小了开源代码 LLM 和 GPT-4 之间的编码能力差距。我们对 HumanEval 和 MBPP 进行了评估，以提供下面清晰的比较。
+代码生成是大语言模型的关键能力之一，期待模型将自然语言指令转换为具有精确的、可执行的代码。仅拥有 70 亿参数的 CodeQwen1.5 在基础代码生成能力上已经超过了更尺寸的模型，进一步缩小了开源代码 LLM 和 GPT-4 之间的编码能力差距。我们对 HumanEval 和 MBPP 进行了评估，下面是具体的比较。
 
 <style>
 .cell-aux {

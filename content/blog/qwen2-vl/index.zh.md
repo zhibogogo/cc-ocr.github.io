@@ -57,7 +57,7 @@ show_word_count: true
 4. **多语言支持**：为了服务全球用户，除英语和中文外，Qwen2-VL 现在还支持理解图像中的多语言文本，包括大多数欧洲语言、日语、韩语、阿拉伯语、越南语等。
 <br><br>
 
-我们以 Apache 2.0 协议开源了 Qwen2-VL-2B 和 Qwen2-VL-7B，以Qwen协议开源了 Qwen2-VL-72B！开源代码已集成到 Hugging Face Transformers、vLLM 和其他第三方框架中。希望能为您提供便捷的开发体验！
+我们以 Apache 2.0 协议开源了 Qwen2-VL-2B 和 Qwen2-VL-7B，并发布了 Qwen2-VL-72B 的 API！开源代码已集成到 Hugging Face Transformers、vLLM 和其他第三方框架中。希望能为您提供便捷的开发体验！
 
 ## 模型性能
 
@@ -300,7 +300,7 @@ print(output_text)
 
 ## License
 
-Qwen2-VL-2B 和 Qwen2-VL-7B 均使用 Apache 2.0 License。Qwen2-VL-72B 使用Qwen License。
+Qwen2-VL-2B 和 Qwen2-VL-7B 均使用 Apache 2.0 License。
 
 ## 下一步
 

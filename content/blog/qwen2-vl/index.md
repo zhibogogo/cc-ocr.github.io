@@ -57,7 +57,7 @@ After a year's relentless efforts, today we are thrilled to release **Qwen2-VL**
 * **Multilingual Support**: to serve global users, besides English and Chinese, Qwen2-VL now supports the understanding of texts in different languages inside images, including most European languages, Japanese, Korean, Arabic, Vietnamese, etc.
 <br><br>
 
-We have open-sourced Qwen2-VL models, including Qwen2-VL-2B and Qwen2-VL-7B under the Apache 2.0 license, as well as Qwen2-VL-72B under the Qwen license. These models are now integrated with Hugging Face Transformers, vLLM, and other third-party frameworks. We hope you enjoy using them!
+We opensource Qwen2-VL-2B and Qwen2-VL-7B with Apache 2.0 license, and we release the API of Qwen2-VL-72B! The opensource is integrated to Hugging Face Transformers, vLLM, and other third-party frameworks. Hope you enjoy!
 
 
 
@@ -301,8 +301,7 @@ print(output_text)
 To facilitate seamless integration and use of our latest models, we support a range of tools and frameworks in the open-source ecosystem, including quantization ([AutoGPTQ](https://github.com/AutoGPTQ/AutoGPTQ), [AutoAWQ](https://github.com/casper-hansen/AutoAWQ)), deployment ([vLLM](https://github.com/vllm-project/vllm)), finetuning ([Llama-Factory](https://github.com/hiyouga/LLaMA-Factory)), etc. 
 
 ## License
-Both the opensource Qwen2-VL-2B and Qwen2-VL-7B are under Apache 2.0. The Qwen2-VL-72B under is the Qwen license.
-
+Both the open-source Qwen2-VL-2B and Qwen2-VL-7B are under Apache 2.0. 
 
 ## What's Next
 

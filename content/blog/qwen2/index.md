@@ -1,6 +1,7 @@
 ---
 title: "Hello Qwen2"
 date: 2024-06-07T00:00:00+08:00
+lastmod: 2024-07-16T00:00:00+08:00
 weight: 1
 # aliases: ["/first"]
 # tags: ["Research"]
@@ -104,10 +105,10 @@ After extensive large-scale pre-training, we conduct post-training to further en
 
 {{< figure src="https://qianwen-res.oss-accelerate-overseas.aliyuncs.com/assets/blog/qwen2/qwen2-72b-instruct.jpg#center" width="100%">}}
 
-We comprehensively evaluate Qwen2-72B-Instruct on 16 benchmarks across various domains. Qwen2-72B-Instruct strikes a balance between obtaining better capabilities and aligning well with human values. Specifically, Qwen2-72B-Instruct significantly surpasses Qwen1.5-72B-Chat across all benchmarks, and also reaches competitive performance compared with Llama-3-70B-Instruct.
+We comprehensively evaluate Qwen2-72B-Instruct on 16 benchmarks across various domains. Qwen2-72B-Instruct strikes a balance between obtaining better capabilities and aligning well with human values. Specifically, Qwen2-72B-Instruct significantly surpasses Qwen1.5-72B-Chat across all benchmarks, and also reaches competitive performance compared with Llama-3-70B-Instruct.[^1]
 
 
-In terms of smaller models, our Qwen2 models also outcompete the SOTA models of similar or even larger sizes. In comparison with the very recently released SOTA models, Qwen2-7B-Instruct can still demonstrate advantages across benchmarks, showing specifically outstanding performance on coding and Chinese-related metrics.
+In terms of smaller models, our Qwen2 models also outcompete the SOTA models of similar or even larger sizes. In comparison with the very recently released SOTA models, Qwen2-7B-Instruct can still demonstrate advantages across benchmarks, showing specifically outstanding performance on coding and Chinese-related metrics.[^1]
 
 {{< figure src="https://qianwen-res.oss-accelerate-overseas.aliyuncs.com/assets/blog/qwen2/qwen2-7b.jpg#center" width="100%">}}
 
@@ -182,12 +183,14 @@ We are training larger Qwen2 models to further explore model scaling along with 
 
 # Citation
 
-We are going to release the technical report for Qwen2 very soon. Feel free to give us a cite!
+If you find our work helpful, feel free to give us a cite!
 
 ```
 @article{qwen2,
-  title={Qwen2 Technical Report},
-  year={2024}
+      title={Qwen2 Technical Report}, 
+      author={An Yang and Baosong Yang and Binyuan Hui and Bo Zheng and Bowen Yu and Chang Zhou and Chengpeng Li and Chengyuan Li and Dayiheng Liu and Fei Huang and Guanting Dong and Haoran Wei and Huan Lin and Jialong Tang and Jialin Wang and Jian Yang and Jianhong Tu and Jianwei Zhang and Jianxin Ma and Jin Xu and Jingren Zhou and Jinze Bai and Jinzheng He and Junyang Lin and Kai Dang and Keming Lu and Keqin Chen and Kexin Yang and Mei Li and Mingfeng Xue and Na Ni and Pei Zhang and Peng Wang and Ru Peng and Rui Men and Ruize Gao and Runji Lin and Shijie Wang and Shuai Bai and Sinan Tan and Tianhang Zhu and Tianhao Li and Tianyu Liu and Wenbin Ge and Xiaodong Deng and Xiaohuan Zhou and Xingzhang Ren and Xinyu Zhang and Xipin Wei and Xuancheng Ren and Yang Fan and Yang Yao and Yichang Zhang and Yu Wan and Yunfei Chu and Yuqiong Liu and Zeyu Cui and Zhenru Zhang and Zhihao Fan},
+      journal={arXiv preprint arXiv:2407.10671},
+      year={2024}
 }
 ```
 <br><br>
@@ -329,7 +332,7 @@ The datasets for evaluation include:
 |C-Eval   | 23.4 |   28.0    | 51.1| 59.7 |  58.2 |  **70.6** |
 |CMMLU   | 24.2 |   -    | 51.1 | 57.8 | 55.1 | **70.3** |
   
-## Instruction-tuned Model Evaluation
+## Instruction-tuned Model Evaluation[^1]
 
 ### Qwen2-72B-Instruct
 | Datasets | Llama-3-70B-Instruct | Qwen1.5-72B-Chat | **Qwen2-72B-Instruct** |
@@ -342,7 +345,6 @@ The datasets for evaluation include:
 | MT-Bench | 8.95 | 8.61 | **9.12** |
 | Arena-Hard | 41.1 | 36.1 | **48.1** |
 | IFEval (Prompt Strict-Acc.) | 77.3 | 55.8 | **77.6** |
-| MixEval	| 84.0 | 84.1 | **86.7** |
 | _**Coding**_ |  |  |  |
 | HumanEval | 81.7 | 71.3 | **86.0** |
 | MBPP | **82.3** | 71.9 | 80.2 |
@@ -350,8 +352,8 @@ The datasets for evaluation include:
 | EvalPlus | 75.2 | 66.9 | **79.0** |
 | LiveCodeBench | 29.3 | 17.9 | **35.7** |
 | _**Mathematics**_ |  |  |  |
-| GSM8K | 93.0 | 82.7 | **93.2** |
-| MATH | 50.4 | 42.5 | **69.0** |
+| GSM8K | **93.0** | 82.7 | 91.1 |
+| MATH | 50.4 | 42.5 | **59.7** |
 | _**Chinese**_ |  |  |  |
 | C-Eval | 61.6 | 76.1 | **83.8** |
 | AlignBench | 7.42 | 7.28 | **8.27** |
@@ -368,8 +370,6 @@ The datasets for evaluation include:
 | GPQA | - | - | 30.8 | **34.3** |
 | TheroemQA | - | - | 30.9 | **33.1** |
 | MT-Bench | 8.30 | 8.50 | 8.30 | **8.55** |
-| IFEval (Prompt Strict-Acc.) | - | - | 50.3 | **59.9** |
-| MixEval	| 70.0 | 81.7 | 81.0 | **82.3** |
 | _**Coding**_ |  |  |  |  |
 | HumanEval | 45.1 | 75.2 | 68.3 | **79.9** |
 | MBPP | 59.5 | **74.6** | 67.9 | 70.9 |
@@ -377,7 +377,7 @@ The datasets for evaluation include:
 | EvalPlus | 48.5 | - | 63.6 | **71.6** |
 | LiveCodeBench | 12.3 | - | 15.2 | **25.5** |
 | _**Mathematics**_ |  |  |  |  |
-| GSM8K | 65.7 | **90.2** | 83.6 | 85.3 |
+| GSM8K | 65.7 | **90.2** | 83.6 | 79.6 |
 | MATH | 30.7 | **50.1** | 42.4 | 49.1 |
 | _**Chinese**_ |  |  |  |  |
 | C-Eval | - | - | 76.7 | 80.5 |
@@ -392,8 +392,6 @@ The datasets for evaluation include:
 | GPQA | **34.2** | - | **-** | 27.8 | 25.3 |
 | TheroemQA | 23.0 | - | - | 14.1 | **25.3** |
 | MT-Bench | 8.05 | 8.20 | 8.35 | 7.60 | **8.41** |
-| IFEval (Prompt Strict-Acc.) | **72.1** | - | 69.0 | 38.3 | 54.7 |
-| MixEval	| 75.0 | 74.2 | - | 71.4 | **76.5** |
 | _**Coding**_ |  |  |  |  |  |
 | Humaneval | 62.2 | 66.5 | 71.8 | 46.3 | **79.9** |
 | MBPP | **67.9** | - | - | 48.9 | 67.2 |
@@ -401,8 +399,8 @@ The datasets for evaluation include:
 | Evalplus | 60.9 | - | - | 44.8 | **70.3** |
 | LiveCodeBench | 17.3 | - | - | 6.0 | **26.6** |
 | _**Mathematics**_ |  |  |  |  |  |
-| GSM8K | 79.6 | 84.8 | 79.6 | 60.3 | **85.7** |
-| MATH | 30.0 | 47.7 | 50.6 | 23.2 | **52.9** |
+| GSM8K | 79.6 | **84.8** | 79.6 | 60.3 | 82.3 |
+| MATH | 30.0 | 47.7 | **50.6** | 23.2 | 49.6 |
 | _**Chinese**_ |  |  |  |  |  |
 | C-Eval | 45.9 | - | 75.6 | 67.3 | **77.2** |
 | AlignBench | 6.20 | 6.90 | 7.01 | 6.20 | **7.21** |
@@ -411,8 +409,7 @@ The datasets for evaluation include:
 | Datasets | Qwen1.5-0.5B-Chat | **Qwen2-0.5B-Instruct** | Qwen1.5-1.8B-Chat | **Qwen2-1.5B-Instruct** |
 | :--- | :---: | :---: | :---: | :---: |
 | MMLU | 35.0 | **37.9** | 43.7 | **52.4** |
-| HumanEval | 10.4 | **29.9** | 27.4 | **47.0** |
-| MBPP | 14.5 | **37.8** | 28.6 | **51.9** |
+| HumanEval | 9.1 | **17.1** | 25.0 | **37.8** |
 | GSM8K | 11.3 | **40.1** | 35.3 | **61.6** |
 | C-Eval | 37.2 | **45.2** | 55.3 | **63.8** |
 | IFEval (Prompt Strict-Acc.) | 14.6 | **20.0** | 16.8 | **29.0** |
@@ -465,3 +462,5 @@ Grouped by task types, the results are shown as follows:
 | GPT-3.5-Turbo-1106 | 3.37 | 3.67 | 3.89 | 2.97 |
 
 These results demonstrate the strong multilingual capabilities of Qwen2 instruction-tuned models.
+
+[^1]: Update on 2024-07-16: The results of instruction-tuned models may differ from those presented in the technical report; in case of any discrepancy, the results documented in the technical report should take precedence.

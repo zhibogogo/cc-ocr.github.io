@@ -1,9 +1,0 @@
-{
-    "title": "Example: Document Parsing",
-    "messages": [
-                {
-            "role": "Photoed table",
-            "content": "![image](https://img.alicdn.com/imgextra/i2/O1CN01wQUvUy1gqRilSBb4H_!!6000000004193-2-tps-1392-1148.png)"
-        }
-    ]
-}
