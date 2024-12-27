@@ -1,0 +1,9 @@
+{
+    "title": "Example: Multi-Scene Text Recognition",
+    "messages": [
+                {
+            "role": "Blurred Receipt",
+            "content": "![image](https://img.alicdn.com/imgextra/i3/O1CN01aNiMTY1VzdtmO57TO_!!6000000002724-2-tps-1386-1006.png)"
+        }
+    ]
+}

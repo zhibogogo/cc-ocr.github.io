@@ -1,0 +1,9 @@
+{
+    "title": "Example: Multi-Scene Text Recognition",
+    "messages": [
+                {
+            "role": "Texts with grounding",
+            "content": "![image](https://img.alicdn.com/imgextra/i4/O1CN011KZDTy1YProHA1Lcf_!!6000000003052-2-tps-1384-968.png)"
+        }
+    ]
+}

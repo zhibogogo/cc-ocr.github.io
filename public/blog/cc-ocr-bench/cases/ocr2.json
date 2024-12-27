@@ -1,0 +1,9 @@
+{
+    "title": "Example: Multi-Scene Text Recognition",
+    "messages": [
+                {
+            "role": "Inverted can",
+            "content": "![image](https://img.alicdn.com/imgextra/i4/O1CN01p0449R1fLTJqRn0gL_!!6000000003990-2-tps-1384-1102.png)"
+        }
+    ]
+}
