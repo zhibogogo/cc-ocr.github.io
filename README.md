@@ -1,13 +1,14 @@
 # GeoEval
 
-This is the repository that contains source code for the [GeoEval website](https://eternal8080.github.io/GeoEval.github.io/).
+This is the repository that contains source code for the [GeoEval website](https://zhibogogo.github.io/cc-ocr.github.io/).
 
 If you find GeoEval useful for your work please cite:
 ```
-@article{zhang2024geoeval,
-  title={GeoEval: benchmark for evaluating LLMs and Multi-Modal Models on geometry problem-solving},
-  author={Zhang, Jiaxin and Li, Zhongzhi and Zhang, Mingliang and Yin, Fei and Liu, Chenglin and Moshfeghi, Yashar},
-  journal={arXiv preprint arXiv:2402.10104},
+@article{yang2024cc,
+  title={CC-OCR: A Comprehensive and Challenging OCR Benchmark for Evaluating Large Multimodal Models in Literacy},
+  author={Yang, Zhibo and Tang, Jun and Li, Zhaohai and Wang, Pengfei and Wan, Jianqiang and Zhong, Humen and Liu, Xuejing and Yang, Mingkun and Wang, Peng and Liu, 
+          Yuliang and others},
+  journal={arXiv preprint arXiv:2412.02210},
   year={2024}
 }
 ```
